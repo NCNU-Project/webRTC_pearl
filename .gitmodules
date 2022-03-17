@@ -1,0 +1,3 @@
+[submodule "ssl.ca"]
+	path = ssl.ca
+	url = https://github.com/efficacy38/ssl.ca.git

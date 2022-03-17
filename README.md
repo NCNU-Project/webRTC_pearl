@@ -1,9 +1,12 @@
 # webRTC_pearl
 ## before start
 ### edit the zone file `vim bind/zones/db.pearl.club`, change line 18's ip to server's ip
-```
-@    IN   A    YOUR_IP
-```
+1. get your ip
+   `route | grep '^default' | awk '{print $8}' | xargs -d '\n ' -n 1 ip addr show`
+2. edit the zone file `vim bind/zones/db.pearl.club`
+    ```
+    @    IN   A    YOUR_IP
+    ```
 ### generate the ssl certificate
 ```
 # at the repo's root directory

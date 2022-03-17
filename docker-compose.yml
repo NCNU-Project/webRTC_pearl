@@ -1,0 +1,18 @@
+# version: "3.1"
+services:
+  bind:
+    image: ubuntu/bind9
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+    volumes:
+      - './bind/named.conf:/etc/bind/named.conf'
+      - './bind/zones:/var/lib/bind'
+  webrtc-server:
+    image: efficacy38/webrtc-demo
+    ports:
+      - 443:443/tcp
+      - 443:443/udp
+    volumes:
+      - './'
+

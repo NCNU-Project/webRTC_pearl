@@ -2,9 +2,9 @@ version: "3.1"
 services:
   bind:
     image: ubuntu/bind9
-    ports:
-      - 53:53/tcp
-      - 53:53/udp
+    # ports:
+      # - 53:53/tcp
+      # - 53:53/udp
     volumes:
       - './bind/named.conf:/etc/bind/named.conf'
       - './bind/zones:/var/lib/bind'
@@ -14,7 +14,6 @@ services:
       - 443:4200/tcp
       - 443:4200/udp
     volumes:
-      - './'
-      - "./ssl/privkey.key:/usr/src/app/ssl/privkey.key"
-      - "./ssl/server.crt:/usr/src/app/ssl/server.crt"
+      - "./ssl/www.pearl.lab.key:/usr/src/app/ssl/privkey.key"
+      - "./ssl/www.pearl.lab.crt:/usr/src/app/ssl/server.crt"
 

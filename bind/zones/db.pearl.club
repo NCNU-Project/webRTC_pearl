@@ -13,7 +13,7 @@
 @                        IN      NS      ns1.pearl.club.
 
 ; name servers - A records
-ns1                      IN      A       163.22.21.125
+ns1                      IN      A       localhost.
 
 ; 10.128.0.0/16 - A records
 @                        IN      A      163.22.21.125

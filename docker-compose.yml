@@ -1,4 +1,4 @@
-# version: "3.1"
+version: "3.1"
 services:
   bind:
     image: ubuntu/bind9
@@ -11,8 +11,10 @@ services:
   webrtc-server:
     image: efficacy38/webrtc-demo
     ports:
-      - 443:443/tcp
-      - 443:443/udp
+      - 443:4200/tcp
+      - 443:4200/udp
     volumes:
       - './'
+      - "./ssl/privkey.key:/usr/src/app/ssl/privkey.key"
+      - "./ssl/server.crt:/usr/src/app/ssl/server.crt"
 

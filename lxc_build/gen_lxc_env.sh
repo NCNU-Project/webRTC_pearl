@@ -29,7 +29,7 @@ for name in jerry branko chofinn angela phoebe angela henry edger solomon; do
           - name: ${name}
             gecos: ${name}
             primary_group: ${name}
-            groups: [ ${name}, sudo ]
+            groups: [ ${name}, sudo, docker ]
             sudo: ALL=(ALL) NOPASSWD:ALL
             lock_passwd: False
             shell: /bin/bash
@@ -50,6 +50,7 @@ for name in jerry branko chofinn angela phoebe angela henry edger solomon; do
           - "cp /run/systemd/resolve/resolv.conf /etc/resolv.conf"
           - "systemctl disable systemd-resolved.service"
           - apt-get install -y docker-compose
+          - echo "127.0.0.1 ${name}"
 EOF
 
     lxc launch ubuntu:20.04 -p default -p $name -p macvlan $name 

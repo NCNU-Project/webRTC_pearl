@@ -2,7 +2,7 @@
 ; BIND data file for local loopback interface
 ;
 ; $TTL    300
-@       IN      SOA     ns1.pearl.club. root.pearl.club. (
+@       IN      SOA     ns1.lab.test.ncnu.org. root.test.lab.test.ncnu.org. (
                               4         ; Serial
                          3600         ; Refresh
                           86400         ; Retry

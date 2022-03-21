@@ -1,11 +1,15 @@
 # webRTC_pearl
 ## before start
 ### edit the zone file `vim bind/zones/db.pearl.club`, change line 18's ip to server's ip
-1. get your ip
-   `route | grep '^default' | awk '{print $8}' | xargs -d '\n ' -n 1 ip addr show`
-2. edit the zone file `vim bind/zones/db.pearl.club`
+1. change the default setting
     ```
-    @    IN   A    YOUR_IP
+    perl -i -pe "s/lab.test.ncnu.org/${USER}.lab.test.ncnu.org/g" *
+    ```
+2. get your ip
+   `route | grep '^default' | awk '{print $8}' | xargs -d '\n ' -n 1 ip addr show`
+3. edit the zone file `vim bind/zones/db.${USER}.test.ncnu.org`
+    ```
+    www    IN   A    YOUR_IP
     ```
 ### generate the ssl certificate
 ```
@@ -20,10 +24,10 @@ $ sudo ssl.ca/install.sh
 $ new-root-ca
 
 # generate the server's private key and CSR
-$ new-server-cert www.pearl.lab
+$ new-server-cert www.lab.test.ncnu.org
 
 # use the ca's private key to sign the CSR
-$ sign-server-cert www.pearl.lab
+$ sign-server-cert www.lab.test.ncnu.org
 ```
 ### import the root CA
 1. open `chrome://settings/security`, click manage certificate
@@ -34,16 +38,11 @@ $ sign-server-cert www.pearl.lab
 ### use docker compose
 `sudo docker-compose -f docker-compose.yml up`
 
-### change dns(ubuntu, local environment)
-1. because 53 port has been used by systemd-resolved, so we need to find dns container's briged ip
-  ```
-  $ docker inspect webrtc_pearl_bind_1 -f \
-    '{{ .NetworkSettings.Networks.webrtc_pearl_default.IPAddress }}
-  ```
-2. add the dns container's ip to `/etc/systemd/resolved.conf`
+### change dns(ubuntu, your desktop)
+1. add the dns container's ip to `/etc/systemd/resolved.conf`
     ```
     [Resolve]
-    DNS=<must be replace by the container's ip>
+    DNS=<must be replace by the remote server IP>
     #FallbackDNS=8.8.8.8
     Domains=hellostrong.org
     #LLMNR=no

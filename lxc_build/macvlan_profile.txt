@@ -3,7 +3,7 @@ description: ""
 devices:
   eth0:
     nictype: macvlan
-    parent: eth0
+    parent: enp5s0
     type: nic
 name: macvlan
 

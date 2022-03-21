@@ -2,13 +2,16 @@
 # sudo snap install lxd
 # sudo lxd init --auto
 
-set -x 
+# set -x 
 lxc profile create macvlan
-# change macvlan's parent to the real one
+# change macvlan's nic parent to the real one, that might support macvlan
 perl -i -pe "s/parent: .*$/parent: $(ip route show to 0.0.0.0/0 | awk '{print $5}' | head -1)/g" macvlan_profile.txt
+
+# import the macvlan profile
 lxc profile edit macvlan < ./macvlan_profile.txt
 
-for name in jerry; do # branko chofinn angela phoebe angela henry edger solomon; do
+# iterate the user's lxc container
+for name in jerry branko chofinn angela phoebe angela henry edger solomon; do
     lxc rm -f $name
     lxc profile create $name
     lxc profile edit $name <<-EOF
@@ -42,7 +45,6 @@ for name in jerry; do # branko chofinn angela phoebe angela henry edger solomon;
             - docker-ce-cli
             - containerd.io
         runcmd:
-          - ['ls']
           - "cp /run/systemd/resolve/resolv.conf /etc/resolv.conf"
           - "systemctl stop systemd-resolved.service"
           - "cp /run/systemd/resolve/resolv.conf /etc/resolv.conf"
@@ -50,6 +52,6 @@ for name in jerry; do # branko chofinn angela phoebe angela henry edger solomon;
           - apt-get install -y docker-compose
 EOF
 
-    lxc launch ubuntu:20.04 -p default -p $name -p macvlan $name
+    lxc launch ubuntu:20.04 -p default -p $name -p macvlan $name 
 done
 

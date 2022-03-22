@@ -2,7 +2,7 @@
 ## before start
 1. change the default setting
     ```
-    perl -i -pe "s/lab.test.ncnu.org/${USER}.lab.test.ncnu.org/g" ./webrtc/index.html ./docker-compose.yml
+    perl -i -pe "s/lab.test.ncnu.org/${USER}.lab.test.ncnu.org/g" ./webrtc/index.html ./docker-compose.yml ./ssl.ca/new-server-cert.sh
     ```
 2. build your own docker image
     ```

@@ -11,7 +11,8 @@
     ```
 3. install the certificate helper
     ```
-    sudo ./ssl.ca/install.sh
+    cd ./ssl.ca
+    sudo ./install.sh
     ```
 4. generate the ssl certificate
     ```
@@ -30,9 +31,11 @@
     ```
 5. import the root CA
     1. `scp {YOUR_NAME}@{YOUR_NAME}.lab.test.ncnu.org:~/webRTC_pearl/ssl/ca.crt .`
-    1. open `chrome://settings/security`, click manage certificate
-    2. goto `Authorities` tab, and click `import` button
-    3. import the root certificate `ssl/ca.crt`
+    2. open `chrome://settings/security`, click manage certificate
+    3. goto `Authorities` tab, and click `import` button
+    4. import the root certificate `ssl/ca.crt`
+    5. goto `chrome://restart` to restart the chrome 
+    6. check whether CA(org-National Chi Nan University) is imported
 
 ## how to start?
 ### use docker compose

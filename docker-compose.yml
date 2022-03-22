@@ -9,7 +9,7 @@ services:
   #     - './bind/named.conf:/etc/bind/named.conf'
   #     - './bind/zones:/var/lib/bind'
   webrtc-server:
-    image: efficacy38/webrtc-demo
+    image: webrtc-demo
     ports:
       - 443:443/tcp
       - 443:443/udp

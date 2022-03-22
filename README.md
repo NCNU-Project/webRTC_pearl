@@ -1,4 +1,5 @@
 # webRTC_pearl
+`git clone --recursive https://github.com/efficacy38/webRTC_pearl.git`
 ## before start
 1. change the default setting
     ```
